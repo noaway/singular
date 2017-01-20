@@ -11,7 +11,6 @@ type Context struct {
 	values  Values
 	Params  Params
 	Keys    map[string]interface{}
-	Handles []Handle
 }
 
 func (ctx *Context) Set(key string, value interface{}) {

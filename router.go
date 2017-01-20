@@ -114,14 +114,11 @@ func (r *Router) HandlerFunc(method, path string, handler http.HandlerFunc) {
 
 func (r *Router) Decorate(f Handle, ds ...Decorator) Handle {
 	decorated := f
-	handles := []Handle{decorated}
 	for _, decorate := range ds {
 		decorated = decorate(decorated)
-		handles = append(handles, decorated)
 	}
 	return func(ctx *Context) {
 		ctx.values = r.values
-		ctx.Handles = handles
 		decorated(ctx)
 	}
 }
